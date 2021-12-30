@@ -1,6 +1,8 @@
 // Converted from https://gist.github.com/ZachHaber/feb0432fe395a303a4f10671877e5e70
 // Who converted it from https://github.com/crubier/react-graph-vis
 
+// Documented at https://visjs.github.io/vis-network/docs/network/
+
 import React, {
     forwardRef,
     useEffect,
