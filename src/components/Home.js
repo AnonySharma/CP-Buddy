@@ -128,6 +128,19 @@ class Home extends Component {
                             required
                         />
                         <br />
+                        <Button
+                            type="submit"
+                            variant="contained"
+                            color="primary"
+                            onSubmit={this.handleSubmit}
+                            style={{
+                                marginTop: "1rem",
+                            }}
+                            disabled={inputData.length === 0}
+                        >
+                            Preview
+                        </Button>
+                        <br />
                         <FormControlLabel
                             control={
                                 <Switch
@@ -165,16 +178,6 @@ class Home extends Component {
                             }
                             label="Is Directed graph?"
                         />
-                        <br />
-                        <Button
-                            type="submit"
-                            variant="contained"
-                            color="primary"
-                            onSubmit={this.handleSubmit}
-                            disabled={inputData.length === 0}
-                        >
-                            Preview
-                        </Button>
                     </Box>
                     {showGraph && (
                         <Graph
