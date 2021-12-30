@@ -60,6 +60,7 @@ class Graph extends Component {
                 <GraphComponent
                     graph={graph}
                     options={{
+                        height: "500px",
                         // layout: {
                         //     hierarchical: true,
                         // },
@@ -70,8 +71,10 @@ class Graph extends Component {
                                     enabled: isDirected,
                                 },
                             },
+                            smooth: {
+                                type: "dynamic",
+                            },
                         },
-                        height: "500px",
                     }}
                 />
                 {/* <GraphComponent graph={dummy} /> */}
