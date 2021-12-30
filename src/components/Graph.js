@@ -39,13 +39,6 @@ class Graph extends Component {
         this.processData(data);
     }
 
-    componentDidUpdate(prevProps) {
-        const {data} = this.props;
-        if (data !== prevProps.data) {
-            this.processData(data);
-        }
-    }
-
     render() {
         const {graph} = this.state;
         const {isDirected} = this.props;

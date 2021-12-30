@@ -16,6 +16,7 @@ class Home extends Component {
         super(props);
         this.state = {
             showError: false,
+            errorType: "error",
             message: "",
             showLabels: false,
             isDirected: false,
@@ -24,9 +25,10 @@ class Home extends Component {
         };
     }
 
-    openSnackbar = (message) => {
+    openSnackbar = (message, type = "error") => {
         this.setState({
             showError: true,
+            errorType: type,
             message,
         });
     };
@@ -44,12 +46,25 @@ class Home extends Component {
         var edges = formData.get("edges");
         edges = this.cleanText(edges);
         if (edges.length === 0) {
-            this.openSnackbar("Please enter edges");
+            this.openSnackbar("Please enter some edges!");
             return;
         }
 
+        var finalEdges = [];
+        edges.forEach((edge) => {
+            var edgeArray = edge.split(" ");
+            if (edgeArray[0] === edgeArray[1] && finalEdges.includes(edge)) {
+                this.openSnackbar(
+                    "Duplicate self-edges are not shown!",
+                    "warning"
+                );
+            } else {
+                finalEdges.push(edge);
+            }
+        });
+
         this.setState({
-            inputData: edges,
+            inputData: finalEdges,
         });
 
         console.log("# ", edges);
@@ -90,6 +105,7 @@ class Home extends Component {
     render() {
         const {
             showError,
+            errorType,
             message,
             showGraph,
             showLabels,
@@ -200,7 +216,7 @@ class Home extends Component {
                     onClose={this.closeSnackbar}
                 >
                     <Alert
-                        severity="error"
+                        severity={errorType}
                         elevation={6}
                         variant="filled"
                         sx={{width: "100%"}}

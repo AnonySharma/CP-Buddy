@@ -1,5 +1,3 @@
-import {v4 as uuid} from "uuid";
-
 export const convertToGraph = (edges, withLabels = false) => {
     const graph = {
         nodes: [],
@@ -27,20 +25,10 @@ export const convertToGraph = (edges, withLabels = false) => {
             });
         }
 
-        if (withLabels) {
-            graph.edges.push({
-                from: from,
-                to: to,
-                label: label,
-            });
-        } else {
-            graph.edges.push({
-                from: from,
-                to: to,
-            });
-        }
-        graph.edges.forEach((edge) => {
-            edge.id = uuid();
+        graph.edges.push({
+            from: from,
+            to: to,
+            label: withLabels ? label : "",
         });
     });
 
